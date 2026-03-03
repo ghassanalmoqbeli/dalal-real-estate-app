@@ -1,0 +1,73 @@
+/* Logo Size Fix - Critical Styles */
+/* This file ensures the logo maintains consistent size across all browsers */
+
+.sidebar-header-icon {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
+    overflow: hidden !important;
+    flex-shrink: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.sidebar-header-icon .app-logo,
+.sidebar-header-icon img {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    display: block !important;
+    box-sizing: border-box !important;
+}
+
+.sidebar.collapsed .sidebar-header-icon {
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
+}
+
+.sidebar.collapsed .sidebar-header-icon .app-logo,
+.sidebar.collapsed .sidebar-header-icon img {
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .sidebar-header-icon,
+    .sidebar.collapsed .sidebar-header-icon {
+        width: 30px !important;
+        height: 30px !important;
+        min-width: 30px !important;
+        min-height: 30px !important;
+        max-width: 30px !important;
+        max-height: 30px !important;
+    }
+    
+    .sidebar-header-icon .app-logo,
+    .sidebar-header-icon img,
+    .sidebar.collapsed .sidebar-header-icon .app-logo,
+    .sidebar.collapsed .sidebar-header-icon img {
+        width: 30px !important;
+        height: 30px !important;
+        min-width: 30px !important;
+        min-height: 30px !important;
+        max-width: 30px !important;
+        max-height: 30px !important;
+    }
+}
+

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة المستخدمين - دلاّل</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="fontawesome-free-7.1.0-web/fontawesome-free-7.1.0-web/css/all.min.css">
+    <style>
+        .sidebar-header-icon{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;max-width:30px!important;max-height:30px!important;overflow:hidden!important;flex-shrink:0!important}
+        .sidebar-header-icon .app-logo,.sidebar-header-icon img{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;max-width:30px!important;max-height:30px!important;object-fit:contain!important;display:block!important}
+        .sidebar.collapsed .sidebar-header-icon{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;max-width:26px!important;max-height:26px!important}
+        .sidebar.collapsed .sidebar-header-icon .app-logo,.sidebar.collapsed .sidebar-header-icon img{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;max-width:26px!important;max-height:26px!important}
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-header-title">
+                    <span class="sidebar-header-icon">
+                        <img src="storage/logo.png" alt="دلاّل" class="app-logo">
+                    </span>
+                    <span class="sidebar-header-text">دلاّل</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()" title="إغلاق/فتح القائمة (Ctrl+B)">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="dashboard.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                        <span class="sidebar-menu-text">الرئيسية</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html" class="sidebar-menu-link active">
+                        <span class="sidebar-menu-icon"><i class="fas fa-users"></i></span>
+                        <span class="sidebar-menu-text">المستخدمين</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ads.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-ad"></i></span>
+                        <span class="sidebar-menu-text">الإعلانات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-flag"></i></span>
+                        <span class="sidebar-menu-text">البلاغات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="banners.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-image"></i></span>
+                        <span class="sidebar-menu-text">البانرات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-bell"></i></span>
+                        <span class="sidebar-menu-text">الإشعارات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="static-content.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-file-alt"></i></span>
+                        <span class="sidebar-menu-text">المحتوى الثابت</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="packages.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-star"></i></span>
+                        <span class="sidebar-menu-text">باقات التمييز</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admins.html" class="sidebar-menu-link" data-page="admins">
+                        <span class="sidebar-menu-icon"><i class="fas fa-user-shield"></i></span>
+                        <span class="sidebar-menu-text">إدارة الأدمن</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-menu-text">إدارة الحساب</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <div class="header">
+                <h1>إدارة المستخدمين</h1>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <span id="adminUsername"></span>
+                    </div>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+            
+            <div class="filters">
+                <div class="filters-row">
+                    <div class="form-group">
+                        <label>البحث</label>
+                        <input type="text" id="searchInput" placeholder="اسم المستخدم، رقم الهاتف، أو ID">
+                    </div>
+                    <div class="form-group">
+                        <label>الحالة</label>
+                        <select id="statusFilter" onchange="filterUsers()">
+                            <option value="">الكل</option>
+                            <option value="active">نشط</option>
+                            <option value="blocked">موقوف</option>
+                            <option value="pending_deletion">طلبات الحذف</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>الترتيب حسب</label>
+                        <select id="sortBy">
+                            <option value="created_at">تاريخ التسجيل</option>
+                            <option value="name">الاسم</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button class="btn btn-primary" onclick="loadUsers()">
+                            <i class="fas fa-search"></i> بحث
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>قائمة المستخدمين</h3>
+                </div>
+                <div id="usersTable" class="loading">
+                    <div class="spinner"></div>
+                    جاري التحميل...
+                </div>
+            </div>
+            
+            <div class="pagination" id="pagination"></div>
+        </main>
+    </div>
+    
+    <!-- User Details Modal -->
+    <div class="modal" id="userModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>تفاصيل المستخدم</h2>
+                <button class="close-modal" onclick="closeUserModal()">&times;</button>
+            </div>
+            <div id="userDetails"></div>
+        </div>
+    </div>
+    
+    <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/permissions.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/users.js"></script>
+</body>
+</html>
+

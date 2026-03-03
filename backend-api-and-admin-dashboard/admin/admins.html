@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الأدمن - دلاّل</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="fontawesome-free-7.1.0-web/fontawesome-free-7.1.0-web/css/all.min.css">
+    <style>
+        .sidebar-header-icon{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;max-width:30px!important;max-height:30px!important;overflow:hidden!important;flex-shrink:0!important}
+        .sidebar-header-icon .app-logo,.sidebar-header-icon img{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;max-width:30px!important;max-height:30px!important;object-fit:contain!important;display:block!important}
+        .sidebar.collapsed .sidebar-header-icon{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;max-width:26px!important;max-height:26px!important}
+        .sidebar.collapsed .sidebar-header-icon .app-logo,.sidebar.collapsed .sidebar-header-icon img{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;max-width:26px!important;max-height:26px!important}
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-header-title">
+                    <span class="sidebar-header-icon">
+                        <img src="storage/logo.png" alt="دلاّل" class="app-logo">
+                    </span>
+                    <span class="sidebar-header-text">دلاّل</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()" title="إغلاق/فتح القائمة (Ctrl+B)">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="dashboard.html" class="sidebar-menu-link" data-page="dashboard">
+                        <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                        <span class="sidebar-menu-text">الرئيسية</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html" class="sidebar-menu-link" data-page="users">
+                        <span class="sidebar-menu-icon"><i class="fas fa-users"></i></span>
+                        <span class="sidebar-menu-text">المستخدمين</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ads.html" class="sidebar-menu-link" data-page="ads">
+                        <span class="sidebar-menu-icon"><i class="fas fa-ad"></i></span>
+                        <span class="sidebar-menu-text">الإعلانات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html" class="sidebar-menu-link" data-page="reports">
+                        <span class="sidebar-menu-icon"><i class="fas fa-flag"></i></span>
+                        <span class="sidebar-menu-text">البلاغات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="banners.html" class="sidebar-menu-link" data-page="banners">
+                        <span class="sidebar-menu-icon"><i class="fas fa-image"></i></span>
+                        <span class="sidebar-menu-text">البانرات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html" class="sidebar-menu-link" data-page="notifications">
+                        <span class="sidebar-menu-icon"><i class="fas fa-bell"></i></span>
+                        <span class="sidebar-menu-text">الإشعارات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="static-content.html" class="sidebar-menu-link" data-page="static-content">
+                        <span class="sidebar-menu-icon"><i class="fas fa-file-alt"></i></span>
+                        <span class="sidebar-menu-text">المحتوى الثابت</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="packages.html" class="sidebar-menu-link" data-page="packages">
+                        <span class="sidebar-menu-icon"><i class="fas fa-star"></i></span>
+                        <span class="sidebar-menu-text">باقات التمييز</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admins.html" class="sidebar-menu-link active" data-page="admins">
+                        <span class="sidebar-menu-icon"><i class="fas fa-user-shield"></i></span>
+                        <span class="sidebar-menu-text">إدارة الأدمن</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="sidebar-menu-link" data-page="profile">
+                        <span class="sidebar-menu-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-menu-text">إدارة الحساب</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <div class="header">
+                <h1>إدارة الأدمن</h1>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <span id="currentAdminUsername"></span>
+                    </div>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+            
+            <div class="filters">
+                <div class="filters-row">
+                    <div class="form-group">
+                        <label>البحث</label>
+                        <input type="text" id="searchInput" placeholder="اسم المستخدم">
+                    </div>
+                    <div class="form-group">
+                        <label>الدور</label>
+                        <select id="roleFilter">
+                            <option value="">الكل</option>
+                            <option value="super_admin">Super Admin</option>
+                            <option value="editor">Editor</option>
+                            <option value="moderator">Moderator</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>الحالة</label>
+                        <select id="statusFilter">
+                            <option value="">الكل</option>
+                            <option value="active">نشط</option>
+                            <option value="disabled">معطل</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button class="btn btn-primary" onclick="loadAdmins()">
+                            <i class="fas fa-search"></i> بحث
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button class="btn btn-success" onclick="openAddAdminModal()">
+                            <i class="fas fa-plus"></i> إضافة أدمن
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>قائمة الأدمن</h3>
+                </div>
+                <div id="adminsTable" class="loading">
+                    <div class="spinner"></div>
+                    جاري التحميل...
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Add/Edit Admin Modal -->
+    <div class="modal" id="adminModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="adminModalTitle">إضافة أدمن جديد</h2>
+                <button class="close-modal" onclick="closeAdminModal()">&times;</button>
+            </div>
+            <form id="adminForm">
+                <input type="hidden" id="adminId">
+                <div class="form-group">
+                    <label>اسم المستخدم</label>
+                    <input type="text" id="adminUsername" required>
+                </div>
+                <div class="form-group">
+                    <label>كلمة المرور</label>
+                    <div class="password-input">
+                        <input type="password" id="adminPassword" required>
+                        <button type="button" class="password-toggle" aria-label="إظهار كلمة المرور">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <small id="passwordHint" style="display: none; color: #999;">اتركه فارغاً للحفاظ على كلمة المرور الحالية</small>
+                </div>
+                <div class="form-group">
+                    <label>الدور</label>
+                    <select id="adminRole" required>
+                        <option value="super_admin">Super Admin</option>
+                        <option value="editor">Editor</option>
+                        <option value="moderator">Moderator</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>الحالة</label>
+                    <select id="adminStatus" required>
+                        <option value="active">نشط</option>
+                        <option value="disabled">معطل</option>
+                    </select>
+                </div>
+                <div class="action-buttons">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> حفظ
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="closeAdminModal()">
+                        إلغاء
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/permissions.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/admins.js"></script>
+</body>
+</html>
+

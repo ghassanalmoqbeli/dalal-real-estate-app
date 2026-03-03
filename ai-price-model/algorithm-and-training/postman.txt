@@ -1,0 +1,90 @@
+{
+  "info": {
+    "_postman_id": "b3b9c4d5-8bde-4c2a-9d7a-2a2e8a5f0d11",
+    "name": "Yemen Real Estate AI API",
+    "description": "Postman collection to test FastAPI price prediction endpoints (/predict). Set baseUrl variable first.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Predict - Sale (Arabic free-text area)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"city\": \"Sanaa\",\n  \"area_name\": \"حده جوار الجامعة\",\n  \"property_type\": \"apartment\",\n  \"deal_type\": \"sale\",\n  \"area_m2\": 120,\n  \"rooms\": 3,\n  \"baths\": 2,\n  \"floors\": 1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/predict",
+          "host": ["{{baseUrl}}"],
+          "path": ["predict"]
+        }
+      }
+    },
+    {
+      "name": "Predict - Rent (Arabic free-text area)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"city\": \"Sanaa\",\n  \"area_name\": \"الصباحة قريب السوق\",\n  \"property_type\": \"apartment\",\n  \"deal_type\": \"rent\",\n  \"area_m2\": 90,\n  \"rooms\": 2,\n  \"baths\": 1,\n  \"floors\": 2\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/predict",
+          "host": ["{{baseUrl}}"],
+          "path": ["predict"]
+        }
+      }
+    },
+    {
+      "name": "Predict - Reject city (should error)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"city\": \"ibb\",\n  \"area_name\": \"حده جوار الجامعة\",\n  \"property_type\": \"apartment\",\n  \"deal_type\": \"sale\",\n  \"area_m2\": 120,\n  \"rooms\": 3,\n  \"baths\": 2,\n  \"floors\": 1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/predict",
+          "host": ["{{baseUrl}}"],
+          "path": ["predict"]
+        }
+      }
+    },
+    {
+      "name": "Predict - Unknown area (should error)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"city\": \"Sanaa\",\n  \"area_name\": \"منطقة غير معروفة جنب كذا\",\n  \"property_type\": \"apartment\",\n  \"deal_type\": \"sale\",\n  \"area_m2\": 110,\n  \"rooms\": 3,\n  \"baths\": 2,\n  \"floors\": 1\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/predict",
+          "host": ["{{baseUrl}}"],
+          "path": ["predict"]
+        }
+      }
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    }
+  ]
+}

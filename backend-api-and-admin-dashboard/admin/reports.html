@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة البلاغات - دلاّل</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="fontawesome-free-7.1.0-web/fontawesome-free-7.1.0-web/css/all.min.css">
+    <style>
+        .sidebar-header-icon{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;max-width:30px!important;max-height:30px!important;overflow:hidden!important;flex-shrink:0!important}
+        .sidebar-header-icon .app-logo,.sidebar-header-icon img{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;max-width:30px!important;max-height:30px!important;object-fit:contain!important;display:block!important}
+        .sidebar.collapsed .sidebar-header-icon{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;max-width:26px!important;max-height:26px!important}
+        .sidebar.collapsed .sidebar-header-icon .app-logo,.sidebar.collapsed .sidebar-header-icon img{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;max-width:26px!important;max-height:26px!important}
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-header-title">
+                    <span class="sidebar-header-icon">
+                        <img src="storage/logo.png" alt="دلاّل" class="app-logo">
+                    </span>
+                    <span class="sidebar-header-text">دلاّل</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()" title="إغلاق/فتح القائمة (Ctrl+B)">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="dashboard.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                        <span class="sidebar-menu-text">الرئيسية</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-users"></i></span>
+                        <span class="sidebar-menu-text">المستخدمين</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ads.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-ad"></i></span>
+                        <span class="sidebar-menu-text">الإعلانات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html" class="sidebar-menu-link active">
+                        <span class="sidebar-menu-icon"><i class="fas fa-flag"></i></span>
+                        <span class="sidebar-menu-text">البلاغات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="banners.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-image"></i></span>
+                        <span class="sidebar-menu-text">البانرات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-bell"></i></span>
+                        <span class="sidebar-menu-text">الإشعارات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="static-content.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-file-alt"></i></span>
+                        <span class="sidebar-menu-text">المحتوى الثابت</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="packages.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-star"></i></span>
+                        <span class="sidebar-menu-text">باقات التمييز</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admins.html" class="sidebar-menu-link" data-page="admins">
+                        <span class="sidebar-menu-icon"><i class="fas fa-user-shield"></i></span>
+                        <span class="sidebar-menu-text">إدارة الأدمن</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-menu-text">إدارة الحساب</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <div class="header">
+                <h1>إدارة البلاغات</h1>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <span id="adminUsername"></span>
+                    </div>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+            
+            <div class="filters">
+                <div class="filters-row">
+                    <div class="form-group">
+                        <label>الحالة</label>
+                        <select id="statusFilter">
+                            <option value="">الكل</option>
+                            <option value="open">مفتوح</option>
+                            <option value="closed">مغلق</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button class="btn btn-primary" onclick="loadReports()">
+                            <i class="fas fa-search"></i> بحث
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>قائمة البلاغات</h3>
+                </div>
+                <div id="reportsTable" class="loading">
+                    <div class="spinner"></div>
+                    جاري التحميل...
+                </div>
+            </div>
+            
+            <div class="pagination" id="pagination"></div>
+        </main>
+    </div>
+    
+    <!-- Report Details Modal -->
+    <div class="modal" id="reportModal">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <h2>تفاصيل البلاغ</h2>
+                <button class="close-modal" onclick="closeReportModal()">&times;</button>
+            </div>
+            <div id="reportDetails"></div>
+        </div>
+    </div>
+    
+    <!-- Warn Owner Modal -->
+    <div class="modal" id="warnOwnerModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <div class="modal-header">
+                <h2>تحذير المعلن</h2>
+                <button class="close-modal" onclick="closeWarnOwnerModal()">&times;</button>
+            </div>
+            <div style="padding: 20px;">
+                <input type="hidden" id="warnOwnerReportId">
+                <input type="hidden" id="warnOwnerAdId">
+                
+                <div class="form-group">
+                    <label>رسالة التحذير للمعلن:</label>
+                    <textarea id="warnOwnerMessage" rows="5" placeholder="أدخل رسالة التحذير (اتركه فارغاً للرسالة الافتراضية)" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; resize: vertical;"></textarea>
+                    <small style="color: var(--text-secondary);">إذا تركت الحقل فارغاً، سيتم استخدام الرسالة الافتراضية: "تم توجيه إنذار لك بسبب البلاغ المقدم على إعلانك"</small>
+                </div>
+                
+                <div class="alert alert-info" style="padding: 12px; background: #dbeafe; border: 1px solid #3b82f6; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fas fa-info-circle"></i> <strong>ملاحظة:</strong> سيتم إغلاق البلاغ تلقائياً بعد إرسال التحذير
+                </div>
+                
+                <div class="action-buttons" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                    <button class="btn btn-secondary" onclick="closeWarnOwnerModal()">إلغاء</button>
+                    <button class="btn btn-warning" onclick="submitWarnOwner()">
+                        <i class="fas fa-paper-plane"></i> إرسال التحذير
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Reject Ad Modal -->
+    <div class="modal" id="rejectAdModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>رفض الإعلان</h2>
+                <button class="close-modal" onclick="closeRejectAdModal()">&times;</button>
+            </div>
+            <form id="rejectAdForm">
+                <input type="hidden" id="rejectAdReportId">
+                <input type="hidden" id="rejectAdId">
+                
+                <div class="form-group">
+                    <label>سبب رفض الإعلان <span style="color: red;">*</span></label>
+                    <textarea id="rejectAdReason" rows="4" required placeholder="أدخل سبب رفض الإعلان..." style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; resize: vertical;"></textarea>
+                </div>
+                
+                <div class="alert alert-warning" style="padding: 12px; background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fas fa-exclamation-triangle"></i> <strong>تنبيه:</strong> سيتم رفض الإعلان وإغلاق البلاغ تلقائياً وإشعار مالك الإعلان
+                </div>
+                
+                <div class="action-buttons" style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeRejectAdModal()">إلغاء</button>
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-times-circle"></i> رفض الإعلان
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/permissions.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/reports.js"></script>
+</body>
+</html>
+

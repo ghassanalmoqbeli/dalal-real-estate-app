@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة البانرات - دلاّل</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="fontawesome-free-7.1.0-web/fontawesome-free-7.1.0-web/css/all.min.css">
+    <style>
+        .sidebar-header-icon{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;max-width:30px!important;max-height:30px!important;overflow:hidden!important;flex-shrink:0!important}
+        .sidebar-header-icon .app-logo,.sidebar-header-icon img{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;max-width:30px!important;max-height:30px!important;object-fit:contain!important;display:block!important}
+        .sidebar.collapsed .sidebar-header-icon{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;max-width:26px!important;max-height:26px!important}
+        .sidebar.collapsed .sidebar-header-icon .app-logo,.sidebar.collapsed .sidebar-header-icon img{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;max-width:26px!important;max-height:26px!important}
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-header-title">
+                    <span class="sidebar-header-icon">
+                        <img src="storage/logo.png" alt="دلاّل" class="app-logo">
+                    </span>
+                    <span class="sidebar-header-text">دلاّل</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()" title="إغلاق/فتح القائمة (Ctrl+B)">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="dashboard.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                        <span class="sidebar-menu-text">الرئيسية</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-users"></i></span>
+                        <span class="sidebar-menu-text">المستخدمين</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ads.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-ad"></i></span>
+                        <span class="sidebar-menu-text">الإعلانات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-flag"></i></span>
+                        <span class="sidebar-menu-text">البلاغات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="banners.html" class="sidebar-menu-link active">
+                        <span class="sidebar-menu-icon"><i class="fas fa-image"></i></span>
+                        <span class="sidebar-menu-text">البانرات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-bell"></i></span>
+                        <span class="sidebar-menu-text">الإشعارات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="static-content.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-file-alt"></i></span>
+                        <span class="sidebar-menu-text">المحتوى الثابت</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="packages.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-star"></i></span>
+                        <span class="sidebar-menu-text">باقات التمييز</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admins.html" class="sidebar-menu-link" data-page="admins">
+                        <span class="sidebar-menu-icon"><i class="fas fa-user-shield"></i></span>
+                        <span class="sidebar-menu-text">إدارة الأدمن</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-menu-text">إدارة الحساب</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <div class="header">
+                <h1>إدارة البانرات</h1>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <span id="adminUsername"></span>
+                    </div>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+            
+            <div style="margin-bottom: 20px;">
+                <button class="btn btn-primary" onclick="openBannerModal()">
+                    <i class="fas fa-plus"></i> إضافة بانر جديد
+                </button>
+            </div>
+            
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>قائمة البانرات</h3>
+                </div>
+                <div id="bannersTable" class="loading">
+                    <div class="spinner"></div>
+                    جاري التحميل...
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Banner Modal -->
+    <div class="modal" id="bannerModal">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h2 id="bannerModalTitle">إضافة بانر جديد</h2>
+                <button class="close-modal" onclick="closeBannerModal()">&times;</button>
+            </div>
+            <form id="bannerForm">
+                <div class="form-group">
+                    <label>صورة البانر</label>
+                    <input type="file" id="bannerImage" accept="image/*" onchange="previewBannerImage()">
+                    <div id="bannerImagePreview" style="margin-top: 15px; text-align: center;"></div>
+                    <input type="hidden" id="bannerImageUrl">
+                    <small style="color: var(--text-secondary); display: block; margin-top: 5px;">يرجى رفع صورة البانر</small>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>اسم المعلن</label>
+                        <input type="text" id="bannerSponsorName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>رقم هاتف المعلن</label>
+                        <input type="text" id="bannerSponsorPhone" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>رابط الوجهة (اختياري)</label>
+                    <input type="url" id="bannerLinkUrl" placeholder="https://example.com">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px;">
+                    <div class="form-group">
+                        <label>التكلفة</label>
+                        <input type="number" id="bannerCost" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>تاريخ البداية</label>
+                        <input type="date" id="bannerStartDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>تاريخ النهاية</label>
+                        <input type="date" id="bannerEndDate" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                        <input type="checkbox" id="bannerActive" checked style="width: auto; cursor: pointer;">
+                        <span>تفعيل البانر</span>
+                    </label>
+                </div>
+                <div class="action-buttons" style="margin-top: 20px;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> حفظ
+                    </button>
+                    <button type="button" class="btn" style="background-color: var(--secondary-color); color: white;" onclick="closeBannerModal()">
+                        <i class="fas fa-times"></i> إلغاء
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Banner Details Modal -->
+    <div class="modal" id="bannerDetailsModal">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h2>تفاصيل البانر</h2>
+                <button class="close-modal" onclick="closeBannerDetailsModal()">&times;</button>
+            </div>
+            <div id="bannerDetails"></div>
+        </div>
+    </div>
+    
+    <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/permissions.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/banners.js"></script>
+</body>
+</html>
+

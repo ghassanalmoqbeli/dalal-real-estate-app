@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إرسال الإشعارات - دلاّل</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="fontawesome-free-7.1.0-web/fontawesome-free-7.1.0-web/css/all.min.css">
+    <style>
+        .sidebar-header-icon{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;max-width:30px!important;max-height:30px!important;overflow:hidden!important;flex-shrink:0!important}
+        .sidebar-header-icon .app-logo,.sidebar-header-icon img{width:30px!important;height:30px!important;min-width:30px!important;min-height:30px!important;max-width:30px!important;max-height:30px!important;object-fit:contain!important;display:block!important}
+        .sidebar.collapsed .sidebar-header-icon{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;max-width:26px!important;max-height:26px!important}
+        .sidebar.collapsed .sidebar-header-icon .app-logo,.sidebar.collapsed .sidebar-header-icon img{width:26px!important;height:26px!important;min-width:26px!important;min-height:26px!important;max-width:26px!important;max-height:26px!important}
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-header-title">
+                    <span class="sidebar-header-icon">
+                        <img src="storage/logo.png" alt="دلاّل" class="app-logo">
+                    </span>
+                    <span class="sidebar-header-text">دلاّل</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()" title="إغلاق/فتح القائمة (Ctrl+B)">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="dashboard.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                        <span class="sidebar-menu-text">الرئيسية</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-users"></i></span>
+                        <span class="sidebar-menu-text">المستخدمين</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ads.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-ad"></i></span>
+                        <span class="sidebar-menu-text">الإعلانات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-flag"></i></span>
+                        <span class="sidebar-menu-text">البلاغات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="banners.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-image"></i></span>
+                        <span class="sidebar-menu-text">البانرات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html" class="sidebar-menu-link active">
+                        <span class="sidebar-menu-icon"><i class="fas fa-bell"></i></span>
+                        <span class="sidebar-menu-text">الإشعارات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="static-content.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-file-alt"></i></span>
+                        <span class="sidebar-menu-text">المحتوى الثابت</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="packages.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-star"></i></span>
+                        <span class="sidebar-menu-text">باقات التمييز</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admins.html" class="sidebar-menu-link" data-page="admins">
+                        <span class="sidebar-menu-icon"><i class="fas fa-user-shield"></i></span>
+                        <span class="sidebar-menu-text">إدارة الأدمن</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="sidebar-menu-link">
+                        <span class="sidebar-menu-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-menu-text">إدارة الحساب</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <div class="header">
+                <h1>إرسال الإشعارات</h1>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <span id="adminUsername"></span>
+                    </div>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+            
+            <div class="table-container" style="margin-bottom: 30px;">
+                <div class="table-header">
+                    <h3>إرسال إشعار جديد</h3>
+                </div>
+                <form id="notificationForm" style="padding: 20px;">
+                    <div class="form-group">
+                        <label>نص الإشعار</label>
+                        <textarea id="notificationMessage" rows="4" required placeholder="أدخل نص الإشعار..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>المستهدف</label>
+                        <select id="targetType" required onchange="toggleUserSelect()">
+                            <option value="all">جميع المستخدمين</option>
+                            <option value="user">مستخدم محدد</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="userSelectGroup" style="display: none;">
+                        <label>اختر المستخدم</label>
+                        <input type="text" id="userSearch" placeholder="ابحث برقم الهاتف..." onkeyup="searchUsers()">
+                        <div id="userSearchResults" style="margin-top: 10px;"></div>
+                        <input type="hidden" id="selectedUserId">
+                    </div>
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> إرسال
+                        </button>
+                    </div>
+                    <div id="notificationResult" style="margin-top: 15px;"></div>
+                </form>
+            </div>
+            
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>سجل الإشعارات المرسلة</h3>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <select id="filterReadStatus" onchange="filterNotifications()" style="padding: 8px; border: 1px solid var(--border-color); border-radius: 6px;">
+                            <option value="">الكل</option>
+                            <option value="false">غير مقروء</option>
+                            <option value="true">مقروء</option>
+                        </select>
+                        <button class="btn btn-primary btn-sm" onclick="loadNotificationHistory()">
+                            <i class="fas fa-sync-alt"></i> تحديث
+                        </button>
+                    </div>
+                </div>
+                <div id="notificationHistory" class="loading">
+                    <div class="spinner"></div>
+                    جاري التحميل...
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/permissions.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/notifications.js"></script>
+</body>
+</html>
+

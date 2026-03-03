@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - لوحة تحكم دلاّل</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="fontawesome-free-7.1.0-web/fontawesome-free-7.1.0-web/css/all.min.css">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <img src="storage/logo.png" alt="دلاّل" class="login-logo">
+                <h1>دلاّل</h1>
+                <p>لوحة تحكم الإدارة</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">اسم المستخدم</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" required autocomplete="current-password">
+                        <button type="button" class="password-toggle" aria-label="إظهار كلمة المرور">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i> تسجيل الدخول
+                </button>
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+            </form>
+        </div>
+    </div>
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>
+

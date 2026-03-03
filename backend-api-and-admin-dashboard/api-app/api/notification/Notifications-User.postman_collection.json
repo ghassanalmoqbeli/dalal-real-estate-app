@@ -1,0 +1,178 @@
+{
+  "info": {
+    "name": "Notifications API - User Only",
+    "description": "Complete user notifications APIs for Flutter app. Each endpoint contains all parameters, methods, and options in a single request.\n\n## Authentication\n- All endpoints require Bearer token authentication\n- Token format: `Authorization: Bearer <user_token>`\n- Get token from user login endpoint\n\n## Base URL\n- Set `baseUrl` variable in Collection Variables\n- Example: `http://localhost/v2` or `https://yourdomain.com/v2`\n\n## Response Format\n- All responses are in JSON format (except SSE stream)\n- Check `status` field: `success` or `error`\n- Error messages in `message` field\n\n## Request Format\n- GET requests: Use query parameters\n- POST/PUT requests: Use `application/x-www-form-urlencoded` (form-urlencoded)\n- Do NOT use raw JSON for POST/PUT requests",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/v2",
+      "type": "string",
+      "description": "Base URL of the API server"
+    },
+    {
+      "key": "userToken",
+      "value": "",
+      "type": "string",
+      "description": "User authentication token (Bearer token)"
+    }
+  ],
+  "item": [
+    {
+      "name": "get_notifications.php",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{userToken}}",
+            "type": "text",
+            "description": "Bearer token for user authentication. Required for all requests."
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api-app/api/notification/get_notifications.php?read=&limit=50&offset=0&last_id=0",
+          "host": ["{{baseUrl}}"],
+          "path": ["api-app", "api", "notification", "get_notifications.php"],
+          "query": [
+            {
+              "key": "read",
+              "value": "",
+              "description": "Filter by read status. Options: 'true' or '1' for read notifications, 'false' or '0' for unread notifications, empty/null for all notifications. Leave empty to get all.",
+              "disabled": false
+            },
+            {
+              "key": "limit",
+              "value": "50",
+              "description": "Maximum number of notifications to return. Must be > 0. Default: 50. Use for pagination.",
+              "disabled": false
+            },
+            {
+              "key": "offset",
+              "value": "0",
+              "description": "Number of notifications to skip for pagination. Must be >= 0. Default: 0. Use with limit for pagination.",
+              "disabled": false
+            },
+            {
+              "key": "last_id",
+              "value": "0",
+              "description": "Get only notifications with ID greater than this value. Use for polling new notifications. Default: 0 (get all). Set to last received notification ID to get only new ones.",
+              "disabled": false
+            }
+          ]
+        },
+        "description": "Get all notifications for the authenticated user with filtering, pagination, and polling support.\n\n**Endpoint:** `GET /api-app/api/notification/get_notifications.php`\n\n**Authentication:**\n- Required: Bearer token in Authorization header\n\n**Query Parameters (All Optional):**\n1. **read** (string, optional)\n   - Filter by read status\n   - Values: `'true'` or `'1'` for read, `'false'` or `'0'` for unread, empty/null for all\n   - Example: `?read=false` to get only unread notifications\n\n2. **limit** (integer, optional, default: 50)\n   - Maximum number of notifications to return\n   - Must be > 0\n   - Example: `?limit=20` to get 20 notifications\n\n3. **offset** (integer, optional, default: 0)\n   - Number of notifications to skip (for pagination)\n   - Must be >= 0\n   - Example: `?limit=20&offset=20` for second page\n\n4. **last_id** (integer, optional, default: 0)\n   - Get only notifications with ID greater than this value\n   - Use for polling new notifications\n   - Example: `?last_id=100` to get only notifications after ID 100\n\n**Response Format:**\n```json\n{\n  \"status\": \"success\",\n  \"data\": {\n    \"notifications\": [\n      {\n        \"id\": 1,\n        \"user_id\": 101,\n        \"admin_id\": 1,\n        \"message\": \"Notification message text\",\n        \"is_read\": 0,\n        \"created_at\": \"2024-01-01 12:00:00\",\n        \"updated_at\": \"2024-01-01 12:00:00\"\n      }\n    ],\n    \"unread_count\": 5,\n    \"total_count\": 20,\n    \"last_id\": 25,\n    \"has_new\": false\n  }\n}\n```\n\n**Response Fields:**\n- `status`: 'success' or 'error'\n- `data.notifications`: Array of notification objects\n- `data.unread_count`: Number of unread notifications (integer)\n- `data.total_count`: Total number of notifications (integer)\n- `data.last_id`: Highest notification ID (use for next polling)\n- `data.has_new`: Boolean indicating if new notifications found (when using last_id)\n\n**Notification Object Fields:**\n- `id`: Notification ID (integer)\n- `user_id`: User ID who owns this notification (integer)\n- `admin_id`: Admin ID who sent the notification (integer, nullable)\n- `message`: Notification message text (string)\n- `is_read`: Read status (0 = unread, 1 = read)\n- `created_at`: Creation timestamp (string)\n- `updated_at`: Last update timestamp (string)\n\n**Usage Examples:**\n1. Get all notifications: `GET /get_notifications.php`\n2. Get only unread: `GET /get_notifications.php?read=false`\n3. Get with pagination: `GET /get_notifications.php?limit=20&offset=0`\n4. Poll for new notifications: `GET /get_notifications.php?last_id=100`\n\n**Error Response:**\n```json\n{\n  \"status\": \"error\",\n  \"message\": \"Error message here\"\n}\n```"
+      },
+      "response": []
+    },
+    {
+      "name": "unread_count.php",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{userToken}}",
+            "type": "text",
+            "description": "Bearer token for user authentication. Required."
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api-app/api/notification/unread_count.php",
+          "host": ["{{baseUrl}}"],
+          "path": ["api-app", "api", "notification", "unread_count.php"]
+        },
+        "description": "Get unread notifications count and last_id. Use this endpoint for the red indicator badge on home screen.\n\n**Endpoint:** `GET /api-app/api/notification/unread_count.php`\n\n**Authentication:**\n- Required: Bearer token in Authorization header\n\n**Query Parameters:**\n- None. This endpoint does not accept any query parameters.\n\n**Response Format:**\n```json\n{\n  \"status\": \"success\",\n  \"data\": {\n    \"unread_count\": 5,\n    \"last_id\": 25\n  }\n}\n```\n\n**Response Fields:**\n- `status`: 'success' or 'error'\n- `data.unread_count`: Number of unread notifications (integer)\n- `data.last_id`: Highest notification ID for this user (use for SSE stream or polling)\n\n**Usage in Flutter:**\n1. Call this endpoint when app opens or user navigates to home screen\n2. Display red badge indicator if `unread_count > 0`\n3. Use `last_id` as starting point for SSE stream connection\n4. This is a lightweight endpoint, safe to call frequently\n\n**Error Response:**\n```json\n{\n  \"status\": \"error\",\n  \"message\": \"Error message here\"\n}\n```"
+      },
+      "response": []
+    },
+    {
+      "name": "mark_as_read.php",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{userToken}}",
+            "type": "text",
+            "description": "Bearer token for user authentication. Required."
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/x-www-form-urlencoded",
+            "type": "text",
+            "description": "Content type must be form-urlencoded. Do NOT use raw JSON."
+          }
+        ],
+        "body": {
+          "mode": "urlencoded",
+          "urlencoded": [
+            {
+              "key": "all",
+              "value": "true",
+              "description": "Set to 'true' to mark ALL notifications as read. Alternative: use notification_id=0. Leave empty or remove this field to mark a single notification.",
+              "type": "text",
+              "disabled": false
+            },
+            {
+              "key": "notification_id",
+              "value": "",
+              "description": "Option 1: Set to 0 to mark ALL notifications as read (alternative to all=true). Option 2: Set to specific notification ID (> 0) to mark only that notification as read. Leave empty if using 'all=true'.",
+              "type": "text",
+              "disabled": true
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api-app/api/notification/mark_as_read.php",
+          "host": ["{{baseUrl}}"],
+          "path": ["api-app", "api", "notification", "mark_as_read.php"]
+        },
+        "description": "Mark notifications as read. Supports marking all notifications or a single notification. Call this when user opens the notifications screen.\n\n**Endpoint:** `POST /api-app/api/notification/mark_as_read.php`\n\n**Alternative Method:** `PUT` (same endpoint, same body format)\n\n**Authentication:**\n- Required: Bearer token in Authorization header\n\n**Body Parameters (form-urlencoded):**\n\n**Option 1: Mark ALL notifications as read**\n- `all` = `'true'` (string)\n- OR `notification_id` = `0` (integer)\n- Use this when user opens notifications screen\n\n**Option 2: Mark single notification as read**\n- `notification_id` = `<notification_id>` (integer, must be > 0)\n- Leave `all` field empty or remove it\n\n**Important Notes:**\n- Body format MUST be `application/x-www-form-urlencoded`\n- Do NOT use raw JSON\n- Both POST and PUT methods are supported\n- Only one option should be used at a time\n\n**Response Format (Mark All):**\n```json\n{\n  \"status\": \"success\",\n  \"message\": \"Marked 5 notifications as read\",\n  \"data\": {\n    \"marked_count\": 5\n  }\n}\n```\n\n**Response Format (Mark Single):**\n```json\n{\n  \"status\": \"success\",\n  \"message\": \"Notification marked as read\",\n  \"data\": {\n    \"notification_id\": 123\n  }\n}\n```\n\n**Response Fields:**\n- `status`: 'success' or 'error'\n- `message`: Success/error message (string)\n- `data.marked_count`: Number of notifications marked as read (when marking all, integer)\n- `data.notification_id`: Notification ID that was marked (when marking single, integer)\n\n**Usage Examples:**\n1. Mark all as read (when opening notifications screen):\n   - Body: `all=true`\n   - OR Body: `notification_id=0`\n\n2. Mark single notification as read:\n   - Body: `notification_id=123`\n   - Remove or leave `all` field empty\n\n**Error Cases:**\n- Invalid notification ID\n- Notification not found\n- Notification does not belong to the authenticated user\n- Missing required parameters\n\n**Error Response:**\n```json\n{\n  \"status\": \"error\",\n  \"message\": \"Error message here\"\n}\n```\n\n**Usage in Flutter:**\n- Call this endpoint immediately when user opens notifications screen\n- Use `all=true` or `notification_id=0` to mark all as read\n- After this call, unread_count should become 0\n- Update UI to remove red badge indicator"
+      },
+      "response": []
+    },
+    {
+      "name": "stream.php",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{userToken}}",
+            "type": "text",
+            "description": "Bearer token for user authentication. Required."
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/api-app/api/notification/stream.php?last_id=0&timeout=25&interval=1",
+          "host": ["{{baseUrl}}"],
+          "path": ["api-app", "api", "notification", "stream.php"],
+          "query": [
+            {
+              "key": "last_id",
+              "value": "0",
+              "description": "Start from this notification ID. Get notifications with ID > last_id. Use 0 to get all new notifications, or use last_id from unread_count endpoint. Update this value after receiving notifications to avoid duplicates on reconnect.",
+              "disabled": false
+            },
+            {
+              "key": "timeout",
+              "value": "25",
+              "description": "Connection timeout in seconds. Default: 25. Minimum: 5. Maximum: 120. After timeout, server sends 'close' event and client should reconnect automatically.",
+              "disabled": false
+            },
+            {
+              "key": "interval",
+              "value": "1",
+              "description": "Polling interval in seconds. How often server checks database for new notifications. Default: 1.0. Minimum: 0.5. Maximum: 5.0. Lower values = more frequent checks but higher server load.",
+              "disabled": false
+            }
+          ]
+        },
+        "description": "Server-Sent Events (SSE) stream for real-time notifications. Flutter should connect and listen for events. Automatically reconnect after timeout.\n\n**Endpoint:** `GET /api-app/api/notification/stream.php`\n\n**Authentication:**\n- Required: Bearer token in Authorization header\n\n**Query Parameters (All Optional):**\n1. **last_id** (integer, optional, default: 0)\n   - Start from this notification ID\n   - Get notifications with ID > last_id\n   - Use 0 to get all new notifications\n   - Use last_id from unread_count endpoint as starting point\n   - Update after receiving notifications to avoid duplicates on reconnect\n   - Example: `?last_id=100`\n\n2. **timeout** (integer, optional, default: 25)\n   - Connection timeout in seconds\n   - Range: 5-120\n   - After timeout, server sends 'close' event\n   - Client should reconnect automatically\n   - Example: `?timeout=30`\n\n3. **interval** (float, optional, default: 1.0)\n   - Polling interval in seconds\n   - How often server checks database for new notifications\n   - Range: 0.5-5.0\n   - Lower values = more frequent checks but higher server load\n   - Example: `?interval=2.0`\n\n**Response Format:**\n- Content-Type: `text/event-stream`\n- Events are sent in SSE format: `event: <event_name>\\ndata: <json_data>\\n\\n`\n- Connection stays open until timeout or client disconnects\n\n**Events:**\n\n1. **hello** (Initial connection event)\n   ```json\n   {\n     \"user_id\": 101,\n     \"last_id\": 0,\n     \"timeout\": 25\n   }\n   ```\n   - Sent immediately after connection\n   - Confirms authentication and connection\n\n2. **notification** (New notification received)\n   ```json\n   {\n     \"notification\": {\n       \"id\": 123,\n       \"user_id\": 101,\n       \"admin_id\": 1,\n       \"message\": \"New notification message\",\n       \"is_read\": 0,\n       \"created_at\": \"2024-01-01 12:00:00\",\n       \"updated_at\": \"2024-01-01 12:00:00\"\n     },\n     \"last_id\": 123\n   }\n   ```\n   - Sent when new notification is detected\n   - Multiple notifications may be sent in sequence\n   - Update your last_id with the received last_id\n\n3. **unread_count** (Updated unread count)\n   ```json\n   {\n     \"unread_count\": 5,\n     \"last_id\": 123\n   }\n   ```\n   - Sent after new notifications are pushed\n   - Update red badge indicator with this count\n\n4. **ping** (Heartbeat every 10 seconds)\n   ```json\n   {\n     \"time\": \"2024-01-01T12:00:00+00:00\",\n     \"unread_count\": 5,\n     \"last_id\": 123\n   }\n   ```\n   - Sent every 10 seconds to verify connection is alive\n   - Contains current unread_count and last_id\n   - Use to update UI if needed\n\n5. **close** (Connection closing)\n   ```json\n   {\n     \"reason\": \"timeout\"\n   }\n   ```\n   - Sent when timeout is reached\n   - Client should reconnect automatically\n   - Wait 1-2 seconds before reconnecting\n\n6. **error** (Error occurred)\n   ```json\n   {\n     \"message\": \"Error message here\"\n   }\n   ```\n   - Sent when authentication fails or other errors occur\n   - Connection will close after error\n\n**Usage in Flutter:**\n1. Connect to this endpoint when app is active\n2. Use EventSource or SSE library to listen for events\n3. Listen for 'notification' events to show new notifications\n4. Update unread_count badge when receiving 'unread_count' event\n5. Automatically reconnect after 'close' event\n6. Use 'ping' events to verify connection is alive\n7. Store `last_id` from events to avoid duplicate notifications on reconnect\n\n**Reconnection Strategy:**\n1. After 'close' event, wait 1-2 seconds\n2. Reconnect with the last received `last_id` as the new `last_id` parameter\n3. Handle network errors and reconnect automatically\n4. Update last_id after each 'notification' event\n\n**Example Flutter Code:**\n```dart\n// Connect to stream\nfinal eventSource = EventSource(\n  'https://yourdomain.com/v2/api-app/api/notification/stream.php?last_id=$lastId',\n  headers: {'Authorization': 'Bearer $token'},\n);\n\neventSource.onMessage.listen((event) {\n  final data = jsonDecode(event.data);\n  if (event.event == 'notification') {\n    // Handle new notification\n    lastId = data['last_id'];\n  } else if (event.event == 'unread_count') {\n    // Update badge\n    unreadCount = data['unread_count'];\n  }\n});\n\neventSource.onError.listen((error) {\n  // Reconnect after error\n});\n```\n\n**Error Response:**\n- Errors are sent as 'error' events in the stream\n- Connection closes after error"
+      },
+      "response": []
+    }
+  ]
+}

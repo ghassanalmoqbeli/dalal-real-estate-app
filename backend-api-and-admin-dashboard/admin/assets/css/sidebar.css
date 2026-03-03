@@ -1,0 +1,452 @@
+/* ============================================
+   SIDEBAR - Clean Rebuild
+   ============================================ */
+
+/* Sidebar Container - Desktop */
+.sidebar {
+    width: 260px;
+    background-color: var(--card-bg);
+    border-left: 1px solid var(--border-color);
+    padding: var(--spacing-xl);
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: width 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+    box-shadow: var(--shadow-md);
+}
+
+/* Prevent any image in sidebar from breaking layout */
+.sidebar img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Collapsed State - Desktop */
+.sidebar.collapsed {
+    width: 70px !important;
+    min-width: 70px !important;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    padding-bottom: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: var(--spacing-xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: auto;
+    padding-top: 5px;
+}
+
+.sidebar-header-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    overflow: hidden;
+    flex: 1;
+    min-width: 0;
+    height: 30px;
+    line-height: 30px;
+}
+
+.sidebar-header-icon {
+    color: var(--primary-color);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
+    overflow: hidden;
+    position: relative;
+}
+
+/* App Logo Styling */
+.sidebar-header-icon .app-logo {
+    width: 30px !important;
+    height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    object-fit: contain;
+    object-position: center;
+    flex-shrink: 0;
+    display: block !important;
+}
+
+/* Collapsed State Logo */
+.sidebar.collapsed .sidebar-header-icon {
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
+}
+
+.sidebar.collapsed .sidebar-header-icon .app-logo {
+    width: 26px !important;
+    height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+}
+
+.sidebar-header-text {
+    color: var(--primary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.2s ease, width 0.2s ease;
+}
+
+.sidebar.collapsed .sidebar-header {
+    justify-content: center;
+}
+
+.sidebar.collapsed .sidebar-header-title {
+    justify-content: center;
+    gap: 0;
+}
+
+.sidebar.collapsed .sidebar-header-text {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Toggle Button */
+.sidebar-toggle {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 20px;
+    padding: 6px;
+    border-radius: var(--radius-sm);
+    transition: all 0.3s ease;
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sidebar-toggle:hover {
+    background-color: var(--bg-color);
+    color: var(--primary-color);
+    transform: scale(1.05);
+}
+
+.sidebar-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Menu List */
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-menu li {
+    margin-bottom: 4px;
+}
+
+/* Menu Links */
+.sidebar-menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    color: var(--text-primary);
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 400;
+    position: relative;
+    white-space: nowrap;
+}
+
+.sidebar-menu-link:hover {
+    background-color: rgba(0, 178, 93, 0.08);
+    color: var(--primary-color);
+    transform: translateX(-2px);
+}
+
+.sidebar-menu-link.active {
+    background-color: rgba(0, 178, 93, 0.15);
+    color: var(--primary-color);
+    font-weight: 500;
+    border-right: 3px solid var(--primary-color);
+}
+
+/* Menu Icons */
+.sidebar-menu-icon {
+    width: 20px;
+    min-width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-menu-icon i {
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-menu-link:hover .sidebar-menu-icon i {
+    transform: scale(1.1);
+}
+
+/* Menu Text */
+.sidebar-menu-text {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    transition: opacity 0.2s ease, width 0.2s ease;
+}
+
+/* Collapsed Menu State */
+.sidebar.collapsed .sidebar-menu-link {
+    justify-content: center;
+    padding: 12px 8px;
+    gap: 0;
+}
+
+.sidebar.collapsed .sidebar-menu-text {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.sidebar.collapsed .sidebar-menu-icon {
+    margin: 0;
+}
+
+.sidebar.collapsed .sidebar-menu-link.active {
+    border-right: 3px solid var(--primary-color);
+}
+
+/* Scrollbar Styling */
+.sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 3px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Main Content Adjustment - Desktop */
+.main-content {
+    margin-right: 260px;
+    transition: margin-right 0.3s ease;
+    width: calc(100% - 260px);
+    min-height: 100vh;
+    padding: var(--spacing-xl);
+}
+
+.main-content.expanded {
+    margin-right: 70px !important;
+    width: calc(100% - 70px) !important;
+}
+
+/* Tooltip for Collapsed State - Desktop Only */
+@media (min-width: 769px) {
+    .sidebar.collapsed .sidebar-menu-link {
+        position: relative;
+    }
+    
+    .sidebar.collapsed .sidebar-menu-link::after {
+        content: attr(data-title);
+        position: absolute;
+        right: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: var(--text-primary);
+        color: white;
+        padding: 6px 12px;
+        border-radius: var(--radius-sm);
+        font-size: 13px;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        pointer-events: none;
+        margin-right: 10px;
+        box-shadow: var(--shadow-lg);
+        z-index: 1001;
+    }
+    
+    .sidebar.collapsed .sidebar-menu-link:hover::after {
+        opacity: 1;
+        visibility: visible;
+        margin-right: 15px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE - Mobile Design
+   ============================================ */
+@media (max-width: 768px) {
+    /* Sidebar on Mobile - Hidden by default */
+    .sidebar {
+        width: 280px;
+        transform: translateX(100%);
+        z-index: 2000;
+        box-shadow: var(--shadow-xl);
+    }
+    
+    .sidebar.show-mobile {
+        transform: translateX(0);
+    }
+    
+    .sidebar.collapsed {
+        width: 280px;
+    }
+    
+    /* Show text on mobile even when "collapsed" */
+    .sidebar.collapsed .sidebar-header-text,
+    .sidebar.collapsed .sidebar-menu-text {
+        opacity: 1;
+        width: auto;
+        height: auto;
+        overflow: visible;
+        position: relative;
+        visibility: visible;
+        pointer-events: auto;
+    }
+    
+    /* Logo on mobile */
+    .sidebar-header-icon,
+    .sidebar.collapsed .sidebar-header-icon {
+        width: 30px !important;
+        height: 30px !important;
+        min-width: 30px !important;
+        min-height: 30px !important;
+        max-width: 30px !important;
+        max-height: 30px !important;
+    }
+    
+    .sidebar-header-icon .app-logo,
+    .sidebar.collapsed .sidebar-header-icon .app-logo {
+        width: 30px !important;
+        height: 30px !important;
+        max-width: 30px !important;
+        max-height: 30px !important;
+        min-width: 30px !important;
+        min-height: 30px !important;
+    }
+    
+    .sidebar.collapsed .sidebar-menu-link {
+        justify-content: flex-start;
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    /* Main Content on Mobile - Full width */
+    .main-content,
+    .main-content.expanded {
+        margin-right: 0;
+        width: 100%;
+        padding: var(--spacing-lg);
+        padding-top: 70px; /* Space for mobile menu button */
+    }
+    
+    /* Mobile Overlay */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1999;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+    
+    .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+    
+    /* Mobile Menu Button */
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 2001;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        width: 45px;
+        height: 45px;
+        border-radius: var(--radius-md);
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: var(--shadow-lg);
+        transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-btn:hover {
+        background: var(--primary-dark);
+        transform: scale(1.05);
+    }
+    
+    .mobile-menu-btn:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Hide mobile button on desktop */
+@media (min-width: 769px) {
+    .mobile-menu-btn {
+        display: none !important;
+    }
+    
+    .sidebar-overlay {
+        display: none !important;
+    }
+}

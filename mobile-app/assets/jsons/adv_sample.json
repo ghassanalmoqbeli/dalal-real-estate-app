@@ -1,0 +1,155 @@
+[
+    {
+        "detAdvId": "adv_12345",
+        "detDate": "2025/11/20",
+        "detTitle": "شقة بثلاث غرف نوم واسعة في التحرير",
+        "imgs": [
+            "assets/imgs/apt0.jpg",
+            "assets/imgs/house0.jpg",
+            "assets/imgs/store0.jpg",
+            "assets/imgs/land0.jpg"
+        ],
+        "mapLocationLink": "assets/imgs/map.jpg",
+        "location": "التحرير",
+        "detPropType": "شقة",
+        "detPrice": "75000",
+        "currency": "USD",
+        "detLikesCount": "42",
+        "detIsPrem": true,
+        "isNegotiable": false,
+        "detState": true,
+        "advCity": "sanaa",
+        "advArea": "4300",
+        "advAdditionalInfo": "قريب من المدارس والأسواق",
+        "advFloorsCount": null,
+        "advRoomsCount": "3",
+        "advKitchensCount": "1",
+        "advBathroomsCount": "2",
+        "advHallsCount": "1",
+        "advOwner": {
+            "id": "user_789",
+            "img": "assets/imgs/pfpjack.jpg",
+            "name": "أحمد المنصوري",
+            "phone": "+967712345678",
+            "whatsappNumber": "+967712345678"
+        },
+        "package": {
+            "type": "2",
+            "startDate": "2025/11/01"
+        }
+    },
+    {
+        "detAdvId": "adv_67890",
+        "detDate": "2025/11/18",
+        "detTitle": "فيلا فاخرة مع حديقة في حدة",
+        "imgs": [
+            "assets/imgs/house0.jpg",
+            "assets/imgs/apt0.jpg",
+            "assets/imgs/store0.jpg",
+            "assets/imgs/land0.jpg"
+        ],
+        "mapLocationLink": "assets/imgs/map.jpg",
+        "location": "حدة",
+        "detPropType": "منزل",
+        "detPrice": "150000",
+        "currency": "USD",
+        "detLikesCount": "85",
+        "detIsPrem": false,
+        "isNegotiable": true,
+        "detState": null,
+        "advCity": "sanaa",
+        "advArea": "6000",
+        "advAdditionalInfo": "تشمل موقف سيارات خاص ومسبح",
+        "advFloorsCount": "2",
+        "advRoomsCount": "4",
+        "advKitchensCount": "2",
+        "advBathroomsCount": "3",
+        "advHallsCount": "2",
+        "advOwner": {
+            "id": "user_456",
+            "img": "assets/imgs/pfpjack.jpg",
+            "name": "فاطمة الحكيم",
+            "phone": "+967733456789",
+            "whatsappNumber": null
+        },
+        "package": null
+    },
+    {
+        "detAdvId": "adv_24680",
+        "detDate": "2025/11/15",
+        "detTitle": "محل تجاري للإيجار في شارع الزبيري",
+        "imgs": [
+            "assets/imgs/apt1.jpg",
+            "assets/imgs/house1.jpg",
+            "assets/imgs/store1.jpg",
+            "assets/imgs/land1.jpg"
+        ],
+        "mapLocationLink": "assets/imgs/map.jpg",
+        "location": "شارع الزبيري",
+        "detPropType": "دكان",
+        "detPrice": "500",
+        "currency": "USD",
+        "detLikesCount": "19",
+        "detIsPrem": false,
+        "isNegotiable": true,
+        "detState": true,
+        "advCity": "sanaa",
+        "advArea": "120",
+        "advAdditionalInfo": "موقع مميز مناسب لجميع الأنشطة التجارية",
+        "advFloorsCount": null,
+        "advRoomsCount": null,
+        "advKitchensCount": null,
+        "advBathroomsCount": null,
+        "advHallsCount": null,
+        "advOwner": {
+            "id": "user_321",
+            "img": "assets/imgs/pfpjack.jpg",
+            "name": "سامي القباطي",
+            "phone": "+967701112233",
+            "whatsappNumber": "+967701112233"
+        },
+        "package": {
+            "type": "1",
+            "startDate": "2025/11/10"
+        }
+    },
+    {
+        "detAdvId": "adv_24380",
+        "detDate": "2025/11/10",
+        "detTitle": "أرض مدد العين",
+        "imgs": [
+            "assets/imgs/land0.jpg",
+            "assets/imgs/apt0.jpg",
+            "assets/imgs/house0.jpg",
+            "assets/imgs/store0.jpg"
+        ],
+        "mapLocationLink": "assets/imgs/map.jpg",
+        "location": "شارع بغداد",
+        "detPropType": "أرض",
+        "detPrice": "500",
+        "currency": "USD",
+        "detLikesCount": "19",
+        "detIsPrem": true,
+        "isNegotiable": true,
+        "detState": true,
+        "advCity": "sanaa",
+        "advArea": "120",
+        "advAdditionalInfo": "أرض زراعية بجانب بئر ماء جاري للسقاية",
+        "advFloorsCount": null,
+        "advRoomsCount": null,
+        "advKitchensCount": null,
+        "advBathroomsCount": null,
+        "advHallsCount": null,
+        "advOwner": {
+            "id": "user_321",
+            "img": "assets/imgs/pfpjack.jpg",
+            "name": "ابو قحطان الرداعي",
+            "phone": "+967701112233",
+            "whatsappNumber": "+967701112233"
+        },
+        "package": {
+            "type": "1",
+            "startDate": "2025/11/10"
+        }
+    }
+]

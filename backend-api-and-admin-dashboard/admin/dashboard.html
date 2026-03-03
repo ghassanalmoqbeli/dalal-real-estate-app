@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - دلاّل</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+    <link rel="stylesheet" href="fontawesome-free-7.1.0-web/fontawesome-free-7.1.0-web/css/all.min.css">
+    <style>
+        /* Force logo size - Critical Fix */
+        .sidebar-header-icon {
+            width: 30px !important;
+            height: 30px !important;
+            min-width: 30px !important;
+            min-height: 30px !important;
+            max-width: 30px !important;
+            max-height: 30px !important;
+            overflow: hidden !important;
+            flex-shrink: 0 !important;
+        }
+        .sidebar-header-icon .app-logo,
+        .sidebar-header-icon img {
+            width: 30px !important;
+            height: 30px !important;
+            min-width: 30px !important;
+            min-height: 30px !important;
+            max-width: 30px !important;
+            max-height: 30px !important;
+            object-fit: contain !important;
+            display: block !important;
+        }
+        .sidebar.collapsed .sidebar-header-icon {
+            width: 26px !important;
+            height: 26px !important;
+            min-width: 26px !important;
+            min-height: 26px !important;
+            max-width: 26px !important;
+            max-height: 26px !important;
+        }
+        .sidebar.collapsed .sidebar-header-icon .app-logo,
+        .sidebar.collapsed .sidebar-header-icon img {
+            width: 26px !important;
+            height: 26px !important;
+            min-width: 26px !important;
+            min-height: 26px !important;
+            max-width: 26px !important;
+            max-height: 26px !important;
+        }
+    </style>
+    <script>
+        // Define toggleSidebar immediately - before DOM loads
+        window.toggleSidebar = function() {
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('.main-content');
+            if (!sidebar || !mainContent) return;
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                sidebar.classList.toggle('show-mobile');
+                const overlay = document.querySelector('.sidebar-overlay');
+                if (overlay) overlay.classList.toggle('active');
+                document.body.style.overflow = sidebar.classList.contains('show-mobile') ? 'hidden' : '';
+            } else {
+                sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('expanded');
+                try {
+                    localStorage.setItem('sidebarCollapsed', sidebar.classList.contains('collapsed') ? 'true' : 'false');
+                } catch(e) {}
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-header-title">
+                    <span class="sidebar-header-icon">
+                        <img src="storage/logo.png" alt="دلاّل" class="app-logo">
+                    </span>
+                    <span class="sidebar-header-text">دلاّل</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()" title="إغلاق/فتح القائمة">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="dashboard.html" class="sidebar-menu-link active" data-page="dashboard">
+                        <span class="sidebar-menu-icon"><i class="fas fa-home"></i></span>
+                        <span class="sidebar-menu-text">الرئيسية</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html" class="sidebar-menu-link" data-page="users">
+                        <span class="sidebar-menu-icon"><i class="fas fa-users"></i></span>
+                        <span class="sidebar-menu-text">المستخدمين</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="ads.html" class="sidebar-menu-link" data-page="ads">
+                        <span class="sidebar-menu-icon"><i class="fas fa-ad"></i></span>
+                        <span class="sidebar-menu-text">الإعلانات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="reports.html" class="sidebar-menu-link" data-page="reports">
+                        <span class="sidebar-menu-icon"><i class="fas fa-flag"></i></span>
+                        <span class="sidebar-menu-text">البلاغات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="banners.html" class="sidebar-menu-link" data-page="banners">
+                        <span class="sidebar-menu-icon"><i class="fas fa-image"></i></span>
+                        <span class="sidebar-menu-text">البانرات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html" class="sidebar-menu-link" data-page="notifications">
+                        <span class="sidebar-menu-icon"><i class="fas fa-bell"></i></span>
+                        <span class="sidebar-menu-text">الإشعارات</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="static-content.html" class="sidebar-menu-link" data-page="static-content">
+                        <span class="sidebar-menu-icon"><i class="fas fa-file-alt"></i></span>
+                        <span class="sidebar-menu-text">المحتوى الثابت</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="packages.html" class="sidebar-menu-link" data-page="packages">
+                        <span class="sidebar-menu-icon"><i class="fas fa-star"></i></span>
+                        <span class="sidebar-menu-text">باقات التمييز</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admins.html" class="sidebar-menu-link" data-page="admins">
+                        <span class="sidebar-menu-icon"><i class="fas fa-user-shield"></i></span>
+                        <span class="sidebar-menu-text">إدارة الأدمن</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="sidebar-menu-link" data-page="profile">
+                        <span class="sidebar-menu-icon"><i class="fas fa-user"></i></span>
+                        <span class="sidebar-menu-text">إدارة الحساب</span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <div class="header">
+                <h1>لوحة التحكم</h1>
+                <div class="header-actions">
+                    <div class="user-info">
+                        <span id="adminUsername"></span>
+                    </div>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+            
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">إجمالي المستخدمين</span>
+                        <div class="stat-card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="totalUsers">0</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">الإعلانات المنشورة</span>
+                        <div class="stat-card-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="publishedAds">0</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">الإعلانات قيد المراجعة</span>
+                        <div class="stat-card-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="pendingAds">0</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">الإعلانات المرفوضة</span>
+                        <div class="stat-card-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="rejectedAds">0</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">البلاغات المفتوحة</span>
+                        <div class="stat-card-icon">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="openReports">0</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-card-header">
+                        <span class="stat-card-title">الإعلانات المميزة</span>
+                        <div class="stat-card-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card-value" id="featuredAds">0</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <div class="table-container" style="margin-bottom: 20px;">
+                    <div class="table-header">
+                        <h3>آخر الإعلانات قيد المراجعة</h3>
+                        <a href="ads.html?status=pending" style="color: var(--primary-color); text-decoration: none;">
+                            عرض الكل <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                    <div id="recentPendingAds" class="loading">
+                        <div class="spinner"></div>
+                        جاري التحميل...
+                    </div>
+                </div>
+                
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>آخر البلاغات</h3>
+                        <a href="reports.html?status=open" style="color: var(--primary-color); text-decoration: none;">
+                            عرض الكل <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </div>
+                    <div id="recentReports" class="loading">
+                        <div class="spinner"></div>
+                        جاري التحميل...
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="assets/js/sidebar.js"></script>
+    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/permissions.js"></script>
+    <script src="assets/js/common.js"></script>
+    <script src="assets/js/dashboard.js"></script>
+</body>
+</html>
+

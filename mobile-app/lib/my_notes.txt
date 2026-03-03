@@ -1,0 +1,821 @@
+dptd(has#txtWid): TextPrefixIcon
+
+dptd(has#txtWid): AddPfpPage
+
+dptd(has#txtWid): LogToRegLeadingLine
+
+dptd(has#txtWid): LongPremLbl
+
+dptd(has2#txtWid): HomeBody
+
+dptd(dplctd||has#txtWid): RRText
+
+dptd(dplctd||has#txtWid): PremLblTxt
+
+dptd(dplctd||has#txtWid): AdvItem
+
+dptd(has#txtWid): SeperatedTitle
+
+dptd(has#txtWid): RRadioItem
+
+dptd(dplctd||has#txtWid): RText
+
+dptd(dplctd||has#txtWid): RightMainTitle
+
+dptd(dplctd||has#txtWid): TextLink
+
+dptd(dplctd||has#txtWid): SeperatedTitle
+
+dptd(dplctd#txtWid): AdvDetailsSectionTitleText
+
+dptd(dplctd#txtWid): BodyTxt
+
+dptd(dplctd#txtWid): PRCLblTxt
+
+dptd(chgbl>twoitmrow<#txtTxtWid): HDescItem
+
+chk(relttd#txtWid): EmbTextLink
+
+dptd~sure(chgbl>txt||rowHolder<#txtWid): EditIco
+
+dptd(dplctd#txtWid): DText
+
+dptd(dplctd#txtWid): CardTitleWid
+
+
+
+
+
+
+comm: FltrFormItems
+
+funcs&lrn: mc_checkbox.dart :: _onChanged
+
+extract~myb: NumericField
+
+extract~myb: ReportTextField
+
+extract~probb: RedWhiteBtn
+
+extract~sure: AdvRefusedBody
+
+
+
+
+
+
+
+
+dptd(has&&chgbl>twoitmrow<#rowHolder): GetPremLbl
+
+dptd(chgbl>rowHolder<#icoWid): EditIco
+
+
+
+
+
+
+dptd(dplctd#txtIcoWid): DetailIcoLine
+
+
+
+
+
+
+dptd(chgbl#txtImgWid): DescImgItem
+
+
+dptd(chgbl#txtIveWid): IVText
+
+
+
+cptrd(evnts): MyAdvSeperatedBtns
+
+
+
+
+
+dptd(mprvbl): VCardForm //sbx
+
+
+
+
+
+
+
+
+
+
+
+
+
+idea(crtWid#padding~=>switcher): DescItem
+
+
+
+
+
+rndm(clsblJ#func): customErrorInput
+
+rndm(clsblJ#func): customInputDecoration
+
+rndm(clsblN#func): imgPaths in adv_details_body.dart
+
+omama(usbl~myb#txtFunc): linkTextSpan
+dptd(dplctd||usbl||has#txtWid): PremiumLabel
+dptd(usbl#gstrIco): IcoHolderMyAdv
+dptd(usbl~myb#txtImgWid): MiniNamedLogo
+dptd(usbl~myb#txtImgWid): DescImgItem
+dptd(usbl#imgWid): AdvDetailsImg
+dptd((dplctd||usbl)~myb#imgWid): DeskMapImg using AdvDetailsImg
+dptd(dplctd||usbl#txtIco/ImgWid): MiniNamedAvatar
+dptd(usbl~probb#icoTxtIco/ImgWid): CommentBubbleHeader
+dptd(usbl#rowHolder): LblRow
+dptd(usbl#icoContWid): PremLblIco
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////10///////////////////////////////////
+CardShareBtn From TconBtn
+s10wB
+
+
+CardFavBtn From IVText
+Avtive{ s10wB  : (CardShareBtn From TconBtn) }
+InActv{ s10w6 }
+
+PendingBtn From PRCLblBtn => PRCLblTxt
+s10wB  : (CardFavBtn From IVText) & (CardShareBtn From TconBtn)
+
+RefusedBtn From PRCLblBtn => PRCLblTxt
+s10wB  : (PendingBtn From PRCLblBtn => PRCLblTxt) & (CardFavBtn From IVText) & (CardShareBtn From TconBtn)
+
+DetailIcoLine UN HCardBox
+s10w5
+
+TailBtnText UN TailBtn
+s10w4
+
+CardDateTxt UN VCardForm
+s10w4
+//////////////////////////////////10///////////////////////////////////
+
+
+//////////////////////////////////12///////////////////////////////////
+
+/////Needs A Custom Style/////
+MyMultipleChoiceCheckedBox
+s12wB
+
+V/H/MyAdv CardSeperatedBtns From normalAdvBtns => CardMoreBtn
+s12wB  : (MyMultipleChoiceCheckedBox) //  & (V/H/MyAdv CardSeperatedBtns)
+
+CardTitleWid UN HCardBox
+s12wB  : (MyMultipleChoiceCheckedBox) & (V/H/MyAdv CardSeperatedBtns)
+
+DetailIcoLine UN VCardForm
+s12w5  : (EmbTextLink)
+
+EmbTextLink
+s12w5  : (DetailIcoLine UN VCardForm)
+
+TextPrefixIcon
+s12w5 : (EmbTextLink) & (DetailIcoLine UN VCardForm)
+
+FilterBtn UN HomePage
+s12w5  : (TextPrefixIcon) & (EmbTextLink) & (DetailIcoLine UN VCardForm)
+
+NavBtnText
+s12w5  : (FilterBtn UN HomePage) &  (TextPrefixIcon) & (EmbTextLink) & (DetailIcoLine UN VCardForm)
+
+PersonalInfoHolder
+s12w5  : (NavBtnText) & (FilterBtn UN HomePage) &  (TextPrefixIcon) & (EmbTextLink) & (DetailIcoLine UN VCardForm)
+
+TextLink
+s12w5
+
+PhoneInput
+s12w4
+
+TailBtnText UN AdvResultsItem
+s12w4
+
+CardDateTxt UN DetailDateText
+s12w4
+
+ReportTextField
+s12w4
+
+
+//////////////////////////////////12///////////////////////////////////
+
+//////////////////////////////////14///////////////////////////////////
+
+MiniNamedAvatar
+s14wB  : (CardLikesBtn From IVText)
+
+
+/////Needs A Custom Style/////
+CardLikesBtn From IVText
+Active{ s14wB  : (MiniNamedAvatar)}
+InActv{ s14w6  : (CrnDropMenu) & (CardTitleWid UN VCardBox) }
+
+CardTitleWid UN VCardBox
+s14w6  : (CrnDropMenu)
+
+CrnDropMenu
+s14w6
+
+///////////////PremLblTxt
+///////////////s14w5
+///////////////
+///////////////premiumLabelTextStyle
+///////////////s14w5
+///////////////
+///////////////RRText
+///////////////s14w5  : (PremLblTxt)
+
+///////////////NumericField
+///////////////s14w4  : (MoreIcoText)
+///////////////
+///////////////MoreIcoText
+///////////////s14w4  : (NumericField)
+///////////////
+///////////////sufTxtInputDeco
+///////////////s14w4  : (MoreIcoText) & (NumericField)
+///////////////
+///////////////NotificTextWidget
+///////////////s14w4
+
+//////////////////////////////////14///////////////////////////////////
+
+//////////////////////////////////16///////////////////////////////////
+RedWhiteBtn From CardMoreBtn
+s16wB
+
+AdvDetailsTitle UN AdvDetailsBody
+s16wB  : (RedWhiteBtn From CardMoreBtn)
+
+
+//////this gotta be checked bruh//////
+SeperatedTitle
+s16wB  : (AdvDetailsTitle UN AdvDetailsBody) & (RedWhiteBtn From CardMoreBtn)
+BodyTxt
+s16w5  : (FilterBtn UN SelectedSectBody)
+//////this gotta be checked bruh//////
+
+
+
+
+FilterBtn UN SelectedSectBody
+s16w5  : (BodyTxt)
+
+//Of Report Form
+RLabel UN ExtLRButton
+s16w5  : (FilterBtn UN SelectedSectBody) & (BodyTxt)
+//////////////////////////////////16///////////////////////////////////
+
+//////////////////////////////////18///////////////////////////////////
+ApplyBtn From PRCLblBtn => PRCLblTxt
+s18wB
+
+filterTitle
+s18wB
+
+
+AdvHeaderLbl From PRCLblBtn => PRCLblTxt
+s18wB  : (ApplyBtn From PRCLblBtn => PRCLblTxt)
+
+filterTitle
+s18wB  : (ApplyBtn From PRCLblBtn => PRCLblTxt)
+
+TextClarify From RText
+s18w6
+
+RefusalMsg
+head{ s18w6 : (TextClarify From RText) }
+[body & tail & HeaderAttatchText]{ s18w4 }
+
+//HomeBodyTitles
+HomeBody
+s18w5
+
+//////////////////////////////////18///////////////////////////////////
+
+
+
+//////////////////////////////////24///////////////////////////////////
+MiniNamedLogo
+s24w6  : (HeaderText)
+
+NextBtn
+s24w6  : (MiniNamedLogo) & (HeaderText)
+
+VerificationCodeField
+s24w6
+
+HeaderText 
+s24w6  : (MiniNamedLogo)
+//////////////////////////////////24///////////////////////////////////
+
+
+
+
+//Of Register & Filter Forms
+RLabel UN ExtLRButton
+s9.5w5
+
+
+
+
+
+CardDateTxt UN HCardBox
+s8w4
+
+
+
+DetailDateText UN NotificHolder
+s8w4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AdvItem row-Text row(center, Text)
+AdvItem row-Text AText
+
+RRText VPText
+
+NavBtnText AText
+
+filterTitle row-Text AText
+
+SeperatedTitle twoitmcol-VPText-VPItem
+TowItmcol(min [VPText + VPItemsep] ) 
+
+
+
+
+DetailIcoLine twoitmrow (end,[Text, sbx, svg]) 
+
+MiniNamedLogo twoitmrow (min,[Text, img])
+
+
+AdvDetailsTitle Dynamic-Text
+
+
+
+EditPersonalInfo twoitmrow ico-RText
+
+PrpText DynamicText
+
+InfComp pad-TowItmcol=VPItem-HPText
+TowItmcol(end,[VPItem(HPText), child])
+
+//AdvDetailsSectionTitleText row-Text
+//row(end,[Text, sbx])
+
+MiniNamedAvatar twoitmrow-HPText (end, HPText(end), crclAvtr)
+
+//DetailsTitle row-RText (end, RText, sbx)
+
+TextLink AText(end)
+
+DescImgItem pad-twoitmrow(img, RText)
+
+HDescItem twoitmrow(RText-RText)
+
+HRadioItem twoitmrow(end, HPItem(rdioFrm), RText)
+
+RadioForm twoitmcol(min,spcBtween, twoitmrow(spcBtween, rdioitems, Text), VPItem )
+
+
+
+RegToLogLeadingLine
+LogToRegLeadingLine row(center,[txtlink, Text])
+
+
+
+CardShareBtn => TconBtn => twoitmrow: Text-svg
+
+TRadioItem col-RText col(end, RText, sbx, FltrRForm,sbx)
+
+CheckBoxRow sbx row(end, cbx spcr RText)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Register text field
+
+class CustomFormTextfield extends StatelessWidget {
+  const CustomFormTextfield({
+    super.key,
+    required this.hinText,
+    required this.onChange,
+    this.isObsecure = false,
+  });
+  final String hinText;
+  final Function(String) onChange;
+  final bool isObsecure;
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      validator: (data) {
+        if (data!.isEmpty) {
+          return kFillFieldFirst;
+        } else {
+          return null;
+        }
+      },
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      textDirection: WidH.trd,
+      textAlign: WidH.tra,
+      onChanged: onChange,
+      style: const TextStyle(color: kBlack),
+      decoration: customInputDecoration(hintText: hinText),
+    );
+  }
+}
+
+
+
+
+date text field
+
+    return TextFormField(
+      validator: (data) {
+        if (data!.isEmpty) {
+          return 'يجب ملء هذا الحقل';
+        } else {
+          return null;
+        }
+      },
+
+      textAlign: WidH.tra,
+      controller: widget.controller,
+      decoration: Deco.dtPicker(),
+      readOnly: true,
+      onTap: _pickDate,
+    );
+
+
+
+This is the general class Model:
+```
+
+class AdvDetailsModal extends AdvCardEntity {
+  final List<String> imgs;
+  final String? mapLocationLink,
+      advFloorsCount,
+      advRoomsCount,
+      advKitchensCount,
+      advBathroomsCount,
+      advHallsCount;
+  final String detAdvId,
+      detDate,
+      detTitle,
+      location,
+      detPropType,
+      detPrice,
+      currency,
+      advCity,
+      advArea,
+      advAdditionalInfo,
+      detLikesCount;
+  final AdvOwner advOwner;
+  final Pkg? package;
+  final bool detIsPrem, isNegotiable;
+  final bool? detState;
+  AdvDetailsModal({
+    required this.imgs,
+    required this.detAdvId,
+    required this.detDate,
+    required this.detTitle,
+    required this.advOwner,
+    this.package,
+    required this.location,
+    required this.detPropType,
+    required this.detPrice,
+    required this.currency,
+    required this.detLikesCount,
+    required this.detIsPrem,
+    required this.isNegotiable,
+    this.mapLocationLink,
+    this.detState,
+    required this.advCity,
+    required this.advArea,
+    required this.advAdditionalInfo,
+    this.advFloorsCount,
+    this.advRoomsCount,
+    this.advKitchensCount,
+    this.advBathroomsCount,
+    this.advHallsCount,
+  }) : super(
+         advCardId: detAdvId,
+         img: imgs[0],
+         date: detDate,
+         title: detTitle,
+         adress: '$advCity - $location',
+         propType: detPropType,
+         price: '$detPrice $currency',
+         likesCount: detLikesCount,
+         isPrem: detIsPrem,
+         state: detState,
+       );
+}
+
+```
+
+AdvOwner:
+```
+
+class AdvOwner {
+  final String id, img, name, phone;
+  final String? whatsappNumber;
+  AdvOwner({
+    required this.id,
+    required this.img,
+    required this.name,
+    required this.phone,
+    this.whatsappNumber,
+  });
+}
+
+```
+
+Package:
+```
+
+class Pkg {
+  final String type, //either '0' or '1' or '2'
+      startDate; //in 'yyyy/M/d' formatt
+  Pkg({required this.type, required this.startDate});
+
+  PackageType get pkgType =>
+      (type == '0')
+          ? PackageType.fund
+          : (type == '1')
+          ? PackageType.special
+          : PackageType.golden;
+
+  PckgInfModel get pkgModel => PckgInfModel(
+    type: pkgType,
+    startDate: WidH.str2date(startDate),
+    frame: WidH.strToint(pkgType.frame),
+  );
+}
+
+```
+
+PackageInfoModel:
+```
+
+class PckgInfModel {
+  final PackageType type;
+  final DateTime startDate;
+  final int frame;
+
+  const PckgInfModel({
+    required this.type,
+    required this.startDate,
+    required this.frame,
+  });
+
+  /// Formatted start date
+  String get startDateStr => DateFormat('yyyy/M/d').format(startDate);
+
+  /// Computed end date
+  DateTime get endDate => startDate.add(Duration(days: frame));
+
+  /// Formatted end date
+  String get endDateStr => DateFormat('yyyy/M/d').format(endDate);
+
+  /// Remaining days from today to endDate
+  String get remainingDays {
+    final now = DateTime.now();
+    final remaining = endDate.difference(now).inDays;
+    return remaining > 0 ? remaining.toString() : '0';
+  }
+}
+
+```
+
+this is the first prompt.
+
+
+
+
+
+
+
+
+{
+  "detAdvId": "adv_12345",
+  "detDate": "2025/11/20",
+  "detTitle": "شقة بثلاث غرف نوم واسعة في التحرير",
+  "imgs": [
+    "https://example.com/images/adv1_1.jpg",
+    "https://example.com/images/adv1_2.jpg"
+  ],
+  "mapLocationLink": "https://maps.google.com/?q=15.3694,44.1910",
+  "location": "التحرير",
+  "detPropType": "شقة",
+  "detPrice": "75000",
+  "currency": "USD",
+  "detLikesCount": "42",
+  "detIsPrem": true,
+  "isNegotiable": false,
+  "detState": true,
+  "advCity": "sanaa",
+  "advArea": "4300",
+  "advAdditionalInfo": "قريب من المدارس والأسواق",
+  "advFloorsCount": "1",
+  "advRoomsCount": "3",
+  "advKitchensCount": "1",
+  "advBathroomsCount": "2",
+  "advHallsCount": "1",
+  "advOwner": {
+    "id": "user_789",
+    "img": "https://example.com/users/user_789.jpg",
+    "name": "أحمد المنصوري",
+    "phone": "+967712345678",
+    "whatsappNumber": "+967712345678"
+  },
+  "package": {
+    "type": "2",
+    "startDate": "2025/11/01"
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+class MiniNamedPfp extends StatelessWidget {
+///instead of MiniNamedAvatar
+  const MiniNamedPfp({
+    super.key,
+    required this.username,
+    required this.imgPath,
+    this.circleSize,
+    this.svgHeight,
+    this.svgWidth,
+    this.txtStyle,
+  });
+  final String username, imgPath;
+  final double? circleSize, svgHeight, svgWidth;
+  final TextStyle? txtStyle;
+  @override
+  Widget build(BuildContext context) {
+    return TwoItmRow(
+      mXAlign: MainAxisAlignment.end,
+      leftChild: HPText(
+        txt: username,
+        style: txtStyle ?? FStyles.s14wB,
+        rSpc: 15,
+      ),
+      rightChild: CircleAvatar(
+        radius: circleSize ?? 33,
+        backgroundColor: kPrimColG,
+        child: Image.asset(
+          imgPath,
+          height: svgHeight ?? 100,
+          width: svgWidth ?? 100,
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+class ContactInfoCard2 extends StatelessWidget {
+  const ContactInfoCard2({
+    super.key,
+    this.whatsAppOnTap,
+    this.smsOnTap,
+    this.callOnTap,
+    required this.contactedName,
+    required this.imgPath,
+  });
+  final void Function()? whatsAppOnTap, smsOnTap, callOnTap;
+  final String contactedName, imgPath;
+  @override
+  Widget build(BuildContext context) {
+    return DetailDescBox(
+      backColor: kWhiteF9,
+      children: [
+        MiniNamedPfp(username: contactedName, imgPath: imgPath),
+        SBx.h20,
+        ContactsBtns(
+          callOnTap: callOnTap,
+          whatsAppOnTap: whatsAppOnTap,
+          smsOnTap: smsOnTap,
+        ),
+      ],
+    );
+  }
+}
+
+
+
+class FContactBox2 extends StatelessWidget {
+  const FContactBox2({
+    super.key,
+    required this.user,
+    this.smsOnTap,
+    this.callOnTap,
+    this.whatsAppOnTap,
+  });
+  final UserModel user;
+  final void Function()? smsOnTap;
+  final void Function()? callOnTap;
+  final void Function()? whatsAppOnTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return AdvDBTitledItem(
+      title: kContactOwner,
+      child: ContactInfoCard2(
+        contactedName: kSamiaRazi, //user.fName
+        imgPath: AssetsData.rUserAvatar, //user.img
+        smsOnTap: smsOnTap,
+        callOnTap: callOnTap,
+        whatsAppOnTap: whatsAppOnTap,
+      ),
+    );
+  }
+}
+
+
+
