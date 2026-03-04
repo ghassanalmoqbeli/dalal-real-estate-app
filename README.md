@@ -296,9 +296,11 @@ Potential future extensions include:
 
 ## 👨‍💻 About the Project
 
-Type: Computer Science Graduation Project – 2026
-Scope: Full-stack mobile platform with production-style backend architecture and AI-powered price prediction integration
-Focus Areas: Mobile engineering, RESTful API development, database architecture design, and applied machine learning
+Type: Computer Science Graduation Project – 2026.
+
+Scope: Full-stack mobile platform with production-style backend architecture and AI-powered price prediction integration.
+
+Focus Areas: Mobile engineering, RESTful API development, database architecture design, and applied machine learning.
 
 This repository is publicly available for portfolio and demonstration purposes only.
 It showcases full-stack development skills and real-world system architecture implementation.
