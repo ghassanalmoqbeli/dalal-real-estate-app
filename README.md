@@ -1,4 +1,4 @@
-## 🏠 Dalal – AI‑Powered Real Estate Super App
+## 🏠 Dalal – AI‑Powered Real Estate App
 
 **Dalal** is an end‑to‑end real estate app that connects property owners directly with buyers and renters through a modern mobile application, an admin dashboard, a REST API, and an AI price prediction service.
 
