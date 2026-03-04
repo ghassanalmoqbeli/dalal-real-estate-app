@@ -89,10 +89,10 @@ The components are decoupled so each can be developed, deployed, and scaled inde
 
 
 - **`ai-price-model/`**
-  - **`algorithm and training/main.py`** – FastAPI app exposing `/predict`
-  - **`algorithm and training/requirements.txt`** – Python dependencies
-  - **`algorithm and training/api startup.txt`** – quick command to start Uvicorn
-  - **`dataset and model/`** – training data, notebooks, and serialized models (`*.pkl`)
+  - **`algorithm-and-training/main.py`** – FastAPI app exposing `/predict`
+  - **`algorithm-and-training/requirements.txt`** – Python dependencies
+  - **`algorithm-and-training/api startup.txt`** – quick command to start Uvicorn
+  - **`dataset-and-model/`** – training data, notebooks, and serialized models (`*.pkl`)
 
 - **`database/ghassan_dalal_app.sql`** – additional DB dump for the application
 
@@ -175,7 +175,7 @@ The app boots with `MaterialApp.router`, `go_router` for navigation, and `flutte
 **Install dependencies**
 
 ```bash
-cd "ai-price-model/algorithm and training"
+cd "ai-price-model/algorithm-and-training"
 pip install -r requirements.txt
 ```
 
