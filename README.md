@@ -296,15 +296,21 @@ Potential future extensions include:
 
 ## 👨‍💻 About the Project
 
-- **Type**: Computer Science Graduation Project – 2026  
-- **Scope**: Full‑stack mobile platform with production‑style backend and AI integration  
-- **Focus Areas**: Mobile engineering, backend/API design, database architecture, and applied machine learning
+Type: Computer Science Graduation Project – 2026
+Scope: Full-stack mobile platform with production-style backend architecture and AI-powered price prediction integration
+Focus Areas: Mobile engineering, RESTful API development, database architecture design, and applied machine learning
 
-This repository is suitable to be showcased on **GitHub**, **LinkedIn**, and in technical portfolios.
+This repository is publicly available for portfolio and demonstration purposes only.
+It showcases full-stack development skills and real-world system architecture implementation.
 
 ---
 
-## 📄 License
+## 📄 License & Intellectual Property
 
-This project is licensed under the **MIT License**. You are free to use, modify, and distribute it with proper attribution.
+© 2026 Ghassan Al-Moqbeli. All Rights Reserved.
 
+This project and its source code are the intellectual property of the author.
+
+Unauthorized copying, reproduction, modification, redistribution, or re-publication of this project — in whole or in part — without explicit written permission from the author is strictly prohibited.
+
+This repository is intended for viewing and evaluation purposes (e.g., recruiters, technical reviewers, academic assessment).
