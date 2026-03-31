@@ -12,8 +12,7 @@ The system digitizes the real estate journey (listing, discovery, communication,
 - **Admin dashboard** for operations and content moderation
 - **RESTful PHP API** as the backend layer
 - **AI microservice (FastAPI + XGBoost)** for price prediction
-- **MySQL database** with full ERD/UML documentation
-
+- **MySQL database** 
 This repository was built as a **full‑stack graduation project (2026)** and is structured as a production‑ready, extensible codebase.
 
 ---
@@ -95,9 +94,6 @@ The components are decoupled so each can be developed, deployed, and scaled inde
   - **`dataset-and-model/`** – training data, notebooks, and serialized models (`*.pkl`)
 
 - **`database/ghassan_dalal_app.sql`** – additional DB dump for the application
-
-- **`er-diagrams/` & `uml-diagrams/`**
-  - Full ERD, Use Case, Activity, Sequence, and Class diagrams
 
 - **`postman-tests/Dalal-API.postman_collection.json`**
   - Postman collection to explore and test the API
